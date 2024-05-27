@@ -1,12 +1,12 @@
 package orderBook
 
 import (
-	"Exchange-OrderBook/domain"
+	"Exchange-OrderBook/domain/order"
 	"fmt"
 	"sort"
 )
 
-func (ob *OrderBook) AddOrder(order domain.Order) {
+func (ob *OrderBook) AddOrder(order order.Order) {
 	if order.Price < 999_999 && order.Quantity < 999_999_999 {
 		if order.BuyOrSell == "B" {
 			ob.BuyOrders = append(ob.BuyOrders, order)

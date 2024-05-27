@@ -1,8 +1,10 @@
 package orderBook
 
-import "Exchange-OrderBook/domain"
+import (
+	"Exchange-OrderBook/domain/order"
+)
 
-func (ob *OrderBook) RemoveOrder(order domain.Order) {
+func (ob *OrderBook) RemoveOrder(order order.Order) {
 	if order.BuyOrSell == "B" {
 		for i, o := range ob.BuyOrders {
 			if o.Price == order.Price && o.Quantity == order.Quantity {

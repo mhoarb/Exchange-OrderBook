@@ -1,8 +1,8 @@
-package cmd
+package main
 
 import (
-	"Exchange-OrderBook/domain"
-	"Exchange-OrderBook/domain/orderBook"
+	orderStruct "Exchange-OrderBook/domain/order"
+	orderBookStruct "Exchange-OrderBook/domain/orderBook"
 	"Exchange-OrderBook/internal/app"
 	"bufio"
 	"fmt"
@@ -13,12 +13,12 @@ import (
 	"strings"
 )
 
-func InputFromUser() {
+func InputFromUser() error {
 	reader := bufio.NewReader(os.Stdin)
-	var orderBook orderBook.OrderBook
+	var orderBook orderBookStruct.OrderBook
 
 	for {
-		var order domain.Order
+		var order orderStruct.Order
 		fmt.Println("please enter your order in this format (B/S,Price,Quantity)")
 		orderInput, _ := reader.ReadString('\n')
 		orderParts := strings.Split(strings.TrimSpace(orderInput), ",")
@@ -36,6 +36,7 @@ func InputFromUser() {
 			log.Fatal(err)
 
 		}
+
 		order.Price = price
 		quantity, err := strconv.Atoi(orderParts[2])
 		if err != nil {
@@ -69,4 +70,5 @@ func InputFromUser() {
 		}
 
 	}
+	return nil
 }

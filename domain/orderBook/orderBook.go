@@ -1,17 +1,17 @@
 package orderBook
 
 import (
-	"Exchange-OrderBook/domain"
+	"Exchange-OrderBook/domain/order"
 )
 
 type iOrderBook interface {
-	AddOrder(order domain.Order)
+	AddOrder(order order.Order)
 	MatchOrders()
-	RemoveOrder(order domain.Order)
+	RemoveOrder(order order.Order)
 	String() string
 }
 
 type OrderBook struct {
-	BuyOrders  []domain.Order
-	SellOrders []domain.Order
+	BuyOrders  []order.Order
+	SellOrders []order.Order
 }

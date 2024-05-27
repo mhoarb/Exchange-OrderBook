@@ -2,7 +2,7 @@ package orderBook
 
 import "strings"
 
-func (ob *OrderBook) String() string {
+func (ob OrderBook) String() string {
 	var result strings.Builder
 	maxOrders := len(ob.BuyOrders)
 	if len(ob.SellOrders) > maxOrders {

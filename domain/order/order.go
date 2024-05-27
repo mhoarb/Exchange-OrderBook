@@ -1,17 +1,16 @@
-package domain
+package order
 
 import (
-	"fmt"
 	"github.com/google/uuid"
 )
+
+type IOrder interface {
+	String() string
+}
 
 type Order struct {
 	OrderID   uuid.UUID
 	BuyOrSell string
 	Price     float64
 	Quantity  int32
-}
-
-func (o Order) String() string {
-	return fmt.Sprintf("%s,%.2f,%d", o.BuyOrSell, o.Price, o.Quantity)
 }
