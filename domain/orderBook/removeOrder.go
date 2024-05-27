@@ -5,7 +5,7 @@ import (
 )
 
 func (ob *OrderBook) RemoveOrder(order order.Order) {
-	if order.BuyOrSell == "B" {
+	if order.BuyOrSell == buy {
 		for i, o := range ob.BuyOrders {
 			if o.Price == order.Price && o.Quantity == order.Quantity {
 				ob.BuyOrders = append(ob.BuyOrders[:i], ob.BuyOrders[i+1:]...)
@@ -13,7 +13,7 @@ func (ob *OrderBook) RemoveOrder(order order.Order) {
 				break
 			}
 		}
-	} else if order.BuyOrSell == "S" {
+	} else if order.BuyOrSell == Sell {
 		for i, o := range ob.SellOrders {
 			if o.Price == order.Price && o.Quantity == order.Quantity {
 				ob.SellOrders = append(ob.SellOrders[:i], ob.SellOrders[i+1:]...)

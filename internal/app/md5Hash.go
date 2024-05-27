@@ -5,6 +5,7 @@ import (
 	"crypto/md5"
 	"encoding/hex"
 	"fmt"
+	"log/slog"
 )
 
 func Md5Hash(order orderBook.OrderBook) {
@@ -13,5 +14,5 @@ func Md5Hash(order orderBook.OrderBook) {
 	hashes.Write(orderByte)
 	hash := hashes.Sum(nil)
 	hashHex := hex.EncodeToString(hash)
-	fmt.Println(hashHex)
+	slog.Info("md5Hash generate", hashHex)
 }

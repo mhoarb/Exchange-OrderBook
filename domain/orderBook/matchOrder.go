@@ -16,14 +16,14 @@ func (ob *OrderBook) MatchOrders() {
 			ob.RemoveOrder(sellOrder)
 			if buyOrder.Quantity > sellOrder.Quantity {
 				remainOrder := order.Order{OrderID: uuid.New(),
-					BuyOrSell: "B",
+					BuyOrSell: buy,
 					Price:     buyOrder.Price,
 					Quantity:  buyOrder.Quantity - sellOrder.Quantity}
 				ob.AddOrder(remainOrder)
 
 			} else if sellOrder.Quantity > buyOrder.Quantity {
 				remainOrder := order.Order{OrderID: uuid.New(),
-					BuyOrSell: "S",
+					BuyOrSell: Sell,
 					Price:     sellOrder.Price,
 					Quantity:  sellOrder.Quantity - buyOrder.Quantity}
 				ob.AddOrder(remainOrder)

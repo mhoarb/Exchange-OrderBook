@@ -8,9 +8,15 @@ import (
 	"fmt"
 	"github.com/google/uuid"
 	"log"
+	"log/slog"
 	"os"
 	"strconv"
 	"strings"
+)
+
+const (
+	yes = "y"
+	no  = "n"
 )
 
 func InputFromUser() error {
@@ -19,7 +25,7 @@ func InputFromUser() error {
 
 	for {
 		var order orderStruct.Order
-		fmt.Println("please enter your order in this format (B/S,Price,Quantity)")
+		slog.Info("welcome Text", "please enter your order in this format (B/S,Price,Quantity)")
 		orderInput, _ := reader.ReadString('\n')
 		orderParts := strings.Split(strings.TrimSpace(orderInput), ",")
 		if len(orderParts) != 3 {
@@ -49,19 +55,19 @@ func InputFromUser() error {
 		orderBook.MatchOrders()
 
 		{
-			fmt.Println("Do you want to add another order?  (y/n)")
+			slog.Info("adding another Order", "Do you want to add another order?  (y/n)")
 			choiceInput, _ := reader.ReadString('\n')
 			choice := strings.TrimSpace(choiceInput)
 
-			if choice == "y" {
+			if choice == yes {
 				continue
-			} else if choice == "n" {
-				fmt.Println("do you want to print all and pretty the orderBook?(y/n")
+			} else if choice == no {
+				slog.Info("print result", "do you want to print all and pretty the orderBook?(y/n")
 				PrintOrderChoiceInput, _ := reader.ReadString('\n')
 				PrintOrderChoice := strings.TrimSpace(PrintOrderChoiceInput)
-				if PrintOrderChoice == "y" {
+				if PrintOrderChoice == yes {
 					app.JsonPrint(orderBook)
-					fmt.Println(orderBook)
+					slog.Info("Print OrderBook", orderBook)
 					app.Md5Hash(orderBook)
 					break
 				}
