@@ -32,7 +32,7 @@ func (ob *OrderBook) AddOrder(order order.Order) {
 		}
 
 	} else {
-		slog.Info("error", "uncorrected order")
+		slog.Info("message", "error", "uncorrected order")
 
 	}
 }

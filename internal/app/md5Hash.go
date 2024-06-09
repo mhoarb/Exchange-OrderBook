@@ -14,5 +14,5 @@ func Md5Hash(order orderBook.OrderBook) {
 	hashes.Write(orderByte)
 	hash := hashes.Sum(nil)
 	hashHex := hex.EncodeToString(hash)
-	slog.Info("md5Hash generate", hashHex)
+	slog.Info("md5Hash generate", "hashhex", hashHex)
 }

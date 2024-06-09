@@ -1,5 +1,8 @@
 package main
 
 func main() {
-	InputFromUser()
+	err := InputFromUser()
+	if err != nil {
+		return
+	}
 }
